@@ -3,6 +3,7 @@ import 'package:app_essencial/splash.dart';
 import 'package:app_essencial/widget/oleos_row.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'edit_oleo_page.dart';
 import 'hasura_conexao.dart';
 import 'model/post_model.dart';
@@ -51,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: const Color(0xFFF2F2F2),
       appBar: AppBar(
         backgroundColor: const Color(0xff01402E),
-        title: const Text("TCC do Cão"),
+        title: const Center(child: Text("App Essencial")),
         actions: [
           _isAdmin
               ? IconButton(
@@ -243,19 +244,23 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 350,
               height: 40,
               // color: Colors.black,
-              child: Row(
-                children: const [
-                  SizedBox(
-                    width: 50,
-                    child: Icon(FontAwesomeIcons.instagram, color: Colors.teal),
-                  ),
-                  Text(
-                    '@julyannelopes',
-                    style: TextStyle(
-                      fontSize: 20,
+              child: GestureDetector(
+                onTap: () => webInstagran(),
+                child: Row(
+                  children: const [
+                    SizedBox(
+                      width: 50,
+                      child:
+                          Icon(FontAwesomeIcons.instagram, color: Colors.teal),
                     ),
-                  ),
-                ],
+                    Text(
+                      '@julyannelopes',
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(
@@ -281,6 +286,18 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  Future webInstagran() async {
+    final Uri urlInstagran =
+        Uri(scheme: 'https', host: 'www.instagram.com', path: 'julyannelopes');
+
+    if (!await launchUrl(
+      urlInstagran,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw 'Could not launch $urlInstagran';
+    }
   }
 
   Future _admin() {
