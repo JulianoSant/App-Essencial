@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:app_essencial/splash.dart';
 import 'package:app_essencial/widget/oleos_row.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'edit_oleo_page.dart';
 import 'hasura_conexao.dart';
 import 'model/post_model.dart';
@@ -181,16 +182,15 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const CircleAvatar(
-              radius: 80.0,
+              radius: 70.0,
               backgroundImage: AssetImage('images/Perfil.jpeg'),
             ),
-            const SizedBox(height: 20),
             const Text(
               'July Anne',
-              style: TextStyle(
-                  fontSize: 70,
-                  fontFamily: 'DancingScript',
-                  color: Colors.black),
+              style: TextStyle(fontSize: 70, color: Colors.black),
+            ),
+            const SizedBox(
+              height: 10,
             ),
             GestureDetector(
               onTap: (() {
@@ -223,7 +223,44 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(height: 20),
             SizedBox(
               width: 350,
-              height: 50,
+              height: 40,
+              // color: Colors.white,
+              child: Row(
+                children: const [
+                  SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: Icon(FontAwesomeIcons.whatsapp, color: Colors.teal),
+                  ),
+                  Text(
+                    '(41) 99749-1470',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              width: 350,
+              height: 40,
+              // color: Colors.black,
+              child: Row(
+                children: const [
+                  SizedBox(
+                    width: 50,
+                    child: Icon(FontAwesomeIcons.instagram, color: Colors.teal),
+                  ),
+                  Text(
+                    '@julyannelopes',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              width: 350,
+              height: 40,
               // color: Colors.black,
               child: Row(
                 children: const [
@@ -236,43 +273,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(
                       fontSize: 20,
                     ),
-                  ),
-                ],
-              ),
-            ),
-            // const SizedBox(height: 20),
-            SizedBox(
-              width: 350,
-              height: 50,
-              // color: Colors.white,
-              child: Row(
-                children: const [
-                  SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: Icon(Icons.call, color: Colors.teal),
-                  ),
-                  Text(
-                    '(41) 99749-1470',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              width: 350,
-              height: 50,
-              // color: Colors.white,
-              child: Row(
-                children: const [
-                  SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: Icon(Icons.call, color: Colors.teal),
-                  ),
-                  Text(
-                    '(41) 99749-1470',
-                    style: TextStyle(fontSize: 20),
                   ),
                 ],
               ),
