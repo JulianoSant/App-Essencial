@@ -1,4 +1,0 @@
-#Wed Sep 14 15:52:12 BRT 2022
-base.0=C\:\\Users\\Aptek\\Desktop\\Juliano\\app_essencial\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
