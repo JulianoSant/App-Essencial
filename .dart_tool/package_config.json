@@ -98,6 +98,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "font_awesome_flutter",
+      "rootUri": "file:///C:/Users/Aptek/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/font_awesome_flutter-10.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "hasura_connect",
       "rootUri": "file:///C:/Users/Aptek/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/hasura_connect-4.0.0+4",
       "packageUri": "lib/",
@@ -230,7 +236,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-09-14T18:26:41.897809Z",
+  "generated": "2022-09-14T19:09:24.662304Z",
   "generator": "pub",
   "generatorVersion": "2.16.2"
 }
