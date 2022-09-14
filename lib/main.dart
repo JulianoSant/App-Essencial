@@ -259,6 +259,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
+            SizedBox(
+              width: 350,
+              height: 50,
+              // color: Colors.white,
+              child: Row(
+                children: const [
+                  SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: Icon(Icons.call, color: Colors.teal),
+                  ),
+                  Text(
+                    '(41) 99749-1470',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
