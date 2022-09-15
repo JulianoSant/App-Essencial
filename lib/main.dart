@@ -226,18 +226,22 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 350,
               height: 40,
               // color: Colors.white,
-              child: Row(
-                children: const [
-                  SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: Icon(FontAwesomeIcons.whatsapp, color: Colors.teal),
-                  ),
-                  Text(
-                    '(41) 99749-1470',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ],
+              child: GestureDetector(
+                onTap: () => webWhats(),
+                child: Row(
+                  children: const [
+                    SizedBox(
+                      width: 50,
+                      height: 50,
+                      child:
+                          Icon(FontAwesomeIcons.whatsapp, color: Colors.teal),
+                    ),
+                    Text(
+                      '(41) 99749-1470',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(
@@ -291,6 +295,18 @@ class _MyHomePageState extends State<MyHomePage> {
   Future webInstagran() async {
     final Uri urlInstagran =
         Uri(scheme: 'https', host: 'www.instagram.com', path: 'julyannelopes');
+
+    if (!await launchUrl(
+      urlInstagran,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw 'Could not launch $urlInstagran';
+    }
+  }
+
+  Future webWhats() async {
+    final Uri urlInstagran =
+        Uri(scheme: 'https', host: 'wa.me', path: '5541997491470');
 
     if (!await launchUrl(
       urlInstagran,
