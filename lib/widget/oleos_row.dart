@@ -154,6 +154,9 @@ class WidgetOleos extends StatelessWidget {
                   ),
                 ],
               ),
+              const SizedBox(
+                height: 5,
+              ),
               isAdmin
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -161,11 +164,20 @@ class WidgetOleos extends StatelessWidget {
                         OutlinedButton(
                           onPressed: onEdit,
                           child: const Text('Editar'),
+                          style: OutlinedButton.styleFrom(
+                            primary: Colors.white,
+                            backgroundColor: Colors.blue,
+                            side: const BorderSide(color: Colors.white),
+                          ),
                         ),
-                        TextButton(
+                        OutlinedButton(
                           onPressed: onDelete,
                           child: const Text('Deletar'),
-                          style: const ButtonStyle(),
+                          style: OutlinedButton.styleFrom(
+                            primary: Colors.white,
+                            backgroundColor: Colors.red,
+                            side: const BorderSide(color: Colors.white),
+                          ),
                         ),
                       ],
                     )

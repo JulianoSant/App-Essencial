@@ -50,79 +50,81 @@ class _PostPageState extends State<PostPage> {
         backgroundColor: const Color(0xff01402E),
         title: const Text("Cadastrar Oleo"),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(30),
-            child: Column(
-              children: [
-                lineText(nomeIdCampo: nome, nomeCampo: "Nome..."),
-                lineText(
-                    nomeIdCampo: nomeCientifico,
-                    nomeCampo: "Nome Cientifico..."),
-                lineText(nomeIdCampo: preco, nomeCampo: "Preço..."),
-                lineText(nomeIdCampo: tamanho, nomeCampo: "Tamanho..."),
-                lineText(nomeIdCampo: image, nomeCampo: "URL imagem..."),
-                lineText(nomeIdCampo: comoUsar, nomeCampo: "Modo de Usar..."),
-                lineText(
-                    nomeIdCampo: beneficioPrimario,
-                    nomeCampo: "Benefícios Primários..."),
-                lineText(
-                    nomeIdCampo: descricao,
-                    nomeCampo: "Descrição Aromática..."),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(30),
-            child: SizedBox(
-              height: 60,
-              child: ElevatedButton.icon(
-                onPressed: nome.text == ""
-                    ? null
-                    : () async {
-                        late bool isSend;
-                        if (widget.oleos != null) {
-                          isSend = await _hasuraConexao.updateOleos(
-                            widget.oleos!.id!,
-                            nome.text,
-                            nomeCientifico.text,
-                            preco.text,
-                            tamanho.text,
-                            image.text,
-                            comoUsar.text,
-                            beneficioPrimario.text,
-                            descricao.text,
-                          );
-                        } else {
-                          isSend = await _hasuraConexao.insertOleos(
-                            nome.text,
-                            nomeCientifico.text,
-                            preco.text,
-                            tamanho.text,
-                            image.text,
-                            comoUsar.text,
-                            beneficioPrimario.text,
-                            descricao.text,
-                          );
-                        }
-                        if (isSend) {
-                          Navigator.pop(context, isSend);
-                        }
-                      },
-                icon: const Icon(
-                  Icons.send,
-                ),
-                label: const Text(
-                  'Adicionar',
-                ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(30),
+              child: Column(
+                children: [
+                  lineText(nomeIdCampo: nome, nomeCampo: "Nome..."),
+                  lineText(
+                      nomeIdCampo: nomeCientifico,
+                      nomeCampo: "Nome Cientifico..."),
+                  lineText(nomeIdCampo: preco, nomeCampo: "Preço..."),
+                  lineText(nomeIdCampo: tamanho, nomeCampo: "Tamanho..."),
+                  lineText(nomeIdCampo: image, nomeCampo: "URL imagem..."),
+                  lineText(nomeIdCampo: comoUsar, nomeCampo: "Modo de Usar..."),
+                  lineText(
+                      nomeIdCampo: beneficioPrimario,
+                      nomeCampo: "Benefícios Primários..."),
+                  lineText(
+                      nomeIdCampo: descricao,
+                      nomeCampo: "Descrição Aromática..."),
+                ],
               ),
             ),
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.all(30),
+              child: SizedBox(
+                height: 60,
+                child: ElevatedButton.icon(
+                  onPressed: nome.text == ""
+                      ? null
+                      : () async {
+                          late bool isSend;
+                          if (widget.oleos != null) {
+                            isSend = await _hasuraConexao.updateOleos(
+                              widget.oleos!.id!,
+                              nome.text,
+                              nomeCientifico.text,
+                              preco.text,
+                              tamanho.text,
+                              image.text,
+                              comoUsar.text,
+                              beneficioPrimario.text,
+                              descricao.text,
+                            );
+                          } else {
+                            isSend = await _hasuraConexao.insertOleos(
+                              nome.text,
+                              nomeCientifico.text,
+                              preco.text,
+                              tamanho.text,
+                              image.text,
+                              comoUsar.text,
+                              beneficioPrimario.text,
+                              descricao.text,
+                            );
+                          }
+                          if (isSend) {
+                            Navigator.pop(context, isSend);
+                          }
+                        },
+                  icon: const Icon(
+                    Icons.send,
+                  ),
+                  label: const Text(
+                    'Adicionar',
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

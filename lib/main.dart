@@ -233,8 +233,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     SizedBox(
                       width: 50,
                       height: 50,
-                      child:
-                          Icon(FontAwesomeIcons.whatsapp, color: Colors.teal),
+                      child: Icon(
+                        FontAwesomeIcons.whatsapp,
+                        color: Colors.teal,
+                      ),
                     ),
                     Text(
                       '(41) 99749-1470',
@@ -254,8 +256,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: const [
                     SizedBox(
                       width: 50,
-                      child:
-                          Icon(FontAwesomeIcons.instagram, color: Colors.teal),
+                      child: Icon(
+                        FontAwesomeIcons.instagram,
+                        color: Colors.teal,
+                      ),
                     ),
                     Text(
                       '@julyannelopes',
@@ -271,19 +275,25 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 350,
               height: 40,
               // color: Colors.black,
-              child: Row(
-                children: const [
-                  SizedBox(
-                    width: 50,
-                    child: Icon(Icons.account_box_rounded, color: Colors.teal),
-                  ),
-                  Text(
-                    'Julyannelopes@yahoo.com.br',
-                    style: TextStyle(
-                      fontSize: 20,
+              child: GestureDetector(
+                onTap: () => webTelegran(),
+                child: Row(
+                  children: const [
+                    SizedBox(
+                      width: 50,
+                      child: Icon(
+                        FontAwesomeIcons.telegram,
+                        color: Colors.teal,
+                      ),
                     ),
-                  ),
-                ],
+                    Text(
+                      'Equipe DoTerra',
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -313,6 +323,17 @@ class _MyHomePageState extends State<MyHomePage> {
       mode: LaunchMode.externalApplication,
     )) {
       throw 'Could not launch $urlInstagran';
+    }
+  }
+
+  Future webTelegran() async {
+    final Uri urlTelegran =
+        Uri(scheme: 'https', host: 't.me', path: 'LK4tsedzU9tkNWRh');
+    if (!await launchUrl(
+      urlTelegran,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw 'Could not launch $urlTelegran';
     }
   }
 
