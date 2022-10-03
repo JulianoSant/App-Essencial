@@ -1,12 +1,11 @@
 import 'dart:developer';
+import 'package:app_essencial/controller/controller.dart';
 import 'package:app_essencial/splash.dart';
-import 'package:app_essencial/widget/oleos_row.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'edit_oleo_page.dart';
-import 'hasura_conexao.dart';
+import 'controller/hasura_conexao.dart';
 import 'model/post_model.dart';
+import 'view/view_export.dart';
 
 void main() {
   runApp(const MyApp());
@@ -45,6 +44,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final HasuraConexao _hasuraConexao = HasuraConexao();
   bool _isAdmin = false;
+  Controller controller = Controller();
 
   @override
   Widget build(BuildContext context) {
@@ -177,165 +177,184 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      child: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const CircleAvatar(
-              radius: 70.0,
-              backgroundImage: AssetImage('images/Perfil.jpeg'),
-            ),
-            const Text(
-              'July Anne',
-              style: TextStyle(fontSize: 70, color: Colors.black),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            GestureDetector(
-              onTap: (() {
-                //ABILITAR A FUNÇAO ADMIN
-                cont++;
-                setState(
-                  () {
-                    if (cont == 5) {
-                      _admin();
-                    }
-                  },
-                );
-              }),
-              child: const Text(
-                'Lider Premier',
-                style: TextStyle(
-                  fontStyle: FontStyle.normal,
-                  fontSize: 17,
-                  color: Colors.black,
-                  letterSpacing: 2.5,
+      child: Stack(
+        children: [
+          _isAdmin == true
+              ? Positioned(
+                  top: 10,
+                  right: 10,
+                  child: IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: () {
+                      setState(() {
+                        _isAdmin = false;
+                        Navigator.pop(context);
+                      });
+                    },
+                  ),
+                )
+              : Container(),
+          Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const CircleAvatar(
+                  radius: 70.0,
+                  backgroundImage: AssetImage('images/Perfil.jpeg'),
                 ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Container(
-              height: 1,
-              width: 150,
-              color: Colors.white,
-            ),
-            const SizedBox(height: 20),
-            SizedBox(
-              width: 350,
-              height: 40,
-              // color: Colors.white,
-              child: GestureDetector(
-                onTap: () => webWhats(),
-                child: Row(
-                  children: const [
-                    SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: Icon(
-                        FontAwesomeIcons.whatsapp,
-                        color: Colors.teal,
-                      ),
-                    ),
-                    Text(
-                      '(41) 99749-1470',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ],
+                const Text(
+                  'July Anne',
+                  style: TextStyle(fontSize: 70, color: Colors.black),
                 ),
-              ),
-            ),
-            SizedBox(
-              width: 350,
-              height: 40,
-              // color: Colors.black,
-              child: GestureDetector(
-                onTap: () => webInstagran(),
-                child: Row(
-                  children: const [
-                    SizedBox(
-                      width: 50,
-                      child: Icon(
-                        FontAwesomeIcons.instagram,
-                        color: Colors.teal,
-                      ),
-                    ),
-                    Text(
-                      '@julyannelopes',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                  ],
+                const SizedBox(
+                  height: 10,
                 ),
-              ),
-            ),
-            SizedBox(
-              width: 350,
-              height: 40,
-              // color: Colors.black,
-              child: GestureDetector(
-                onTap: () => webTelegran(),
-                child: Row(
-                  children: const [
-                    SizedBox(
-                      width: 50,
-                      child: Icon(
-                        FontAwesomeIcons.telegram,
-                        color: Colors.teal,
-                      ),
+                GestureDetector(
+                  onTap: (() {
+                    //ABILITAR A FUNÇAO ADMIN
+                    cont++;
+                    setState(
+                      () {
+                        if (cont == 5) {
+                          _admin();
+                        }
+                      },
+                    );
+                  }),
+                  child: const Text(
+                    'Lider Premier',
+                    style: TextStyle(
+                      fontStyle: FontStyle.normal,
+                      fontSize: 17,
+                      color: Colors.black,
+                      letterSpacing: 2.5,
                     ),
-                    Text(
-                      'Equipe DoTerra',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+                const SizedBox(height: 10),
+                Container(
+                  height: 1,
+                  width: 150,
+                  color: Colors.white,
+                ),
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: 350,
+                  height: 40,
+                  // color: Colors.white,
+                  child: GestureDetector(
+                    onTap: () => controller.webWhats(),
+                    child: Row(
+                      children: const [
+                        SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: Icon(
+                            FontAwesomeIcons.whatsapp,
+                            color: Colors.teal,
+                          ),
+                        ),
+                        Text(
+                          '(41) 99749-1470',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 350,
+                  height: 40,
+                  // color: Colors.black,
+                  child: GestureDetector(
+                    onTap: () => controller.webInstagran(),
+                    child: Row(
+                      children: const [
+                        SizedBox(
+                          width: 50,
+                          child: Icon(
+                            FontAwesomeIcons.instagram,
+                            color: Colors.teal,
+                          ),
+                        ),
+                        Text(
+                          '@julyannelopes',
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 350,
+                  height: 40,
+                  // color: Colors.black,
+                  child: GestureDetector(
+                    onTap: () => controller.webTelegran(),
+                    child: Row(
+                      children: const [
+                        SizedBox(
+                          width: 50,
+                          child: Icon(
+                            FontAwesomeIcons.telegram,
+                            color: Colors.teal,
+                          ),
+                        ),
+                        Text(
+                          'Equipe DoTerra',
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
-  Future webInstagran() async {
-    final Uri urlInstagran =
-        Uri(scheme: 'https', host: 'www.instagram.com', path: 'julyannelopes');
+  // Future webInstagran() async {
+  //   final Uri urlInstagran =
+  //       Uri(scheme: 'https', host: 'www.instagram.com', path: 'julyannelopes');
 
-    if (!await launchUrl(
-      urlInstagran,
-      mode: LaunchMode.externalApplication,
-    )) {
-      throw 'Could not launch $urlInstagran';
-    }
-  }
+  //   if (!await launchUrl(
+  //     urlInstagran,
+  //     mode: LaunchMode.externalApplication,
+  //   )) {
+  //     throw 'Could not launch $urlInstagran';
+  //   }
+  // }
 
-  Future webWhats() async {
-    final Uri urlInstagran =
-        Uri(scheme: 'https', host: 'wa.me', path: '5541997491470');
+  // Future webWhats() async {
+  //   final Uri urlWhats =
+  //       Uri(scheme: 'https', host: 'wa.me', path: '5541997491470');
 
-    if (!await launchUrl(
-      urlInstagran,
-      mode: LaunchMode.externalApplication,
-    )) {
-      throw 'Could not launch $urlInstagran';
-    }
-  }
+  //   if (!await launchUrl(
+  //     urlWhats,
+  //     mode: LaunchMode.externalApplication,
+  //   )) {
+  //     throw 'Could not launch $urlWhats';
+  //   }
+  // }
 
-  Future webTelegran() async {
-    final Uri urlTelegran =
-        Uri(scheme: 'https', host: 't.me', path: 'LK4tsedzU9tkNWRh');
-    if (!await launchUrl(
-      urlTelegran,
-      mode: LaunchMode.externalApplication,
-    )) {
-      throw 'Could not launch $urlTelegran';
-    }
-  }
+  // Future webTelegran() async {
+  //   final Uri urlTelegran =
+  //       Uri(scheme: 'https', host: 't.me', path: 'LK4tsedzU9tkNWRh');
+  //   if (!await launchUrl(
+  //     urlTelegran,
+  //     mode: LaunchMode.externalApplication,
+  //   )) {
+  //     throw 'Could not launch $urlTelegran';
+  //   }
+  // }
 
   Future _admin() {
     return showDialog(
