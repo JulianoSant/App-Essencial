@@ -357,26 +357,53 @@ class _MyHomePageState extends State<MyHomePage> {
   // }
 
   Future _admin() {
+    var senha;
     return showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: const Text('Admin'),
-          content: const Text('Você é o admin'),
-          actions: [
-            TextButton(
-              child: const Text('OK'),
-              onPressed: () {
-                setState(
-                  () {
-                    _isAdmin = true;
-                  },
-                );
-                Navigator.of(context).pop();
+        return SizedBox(
+          height: 200,
+          child: AlertDialog(
+            title: const Text('Digite a senha'),
+            content: TextField(
+              onChanged: (value) {
+                senha = value;
               },
             ),
-          ],
+            actions: [
+              TextButton(
+                onPressed: () {
+                  if (senha == '123456') {
+                    setState(() {
+                      _isAdmin = true;
+                    });
+                    Navigator.pop(context);
+                  } else {
+                    Navigator.pop(context);
+                  }
+                },
+                child: const Text('Entrar'),
+              ),
+            ],
+          ),
         );
+        // return AlertDialog(
+        //   title: const Text('Admin'),
+        //   content: const Text('Você é o admin'),
+        //   actions: [
+        //     TextButton(
+        //       child: const Text('OK'),
+        //       onPressed: () {
+        //         setState(
+        //           () {
+        //             _isAdmin = true;
+        //           },
+        //         );
+        //         Navigator.of(context).pop();
+        //       },
+        //     ),
+        //   ],
+        // );
       },
     );
   }
