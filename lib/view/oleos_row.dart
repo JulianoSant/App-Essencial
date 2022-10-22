@@ -328,7 +328,7 @@ class WidgetOleos extends StatelessWidget {
                               ),
                               onPressed: () => controller.webWhats(
                                   link:
-                                      'Ola, goataria de encomendar o oleo $nome'),
+                                      'Ola, gostaria de encomendar o oleo $nome'),
                               child: const Text('Encomendar'),
                             ),
                           ],
