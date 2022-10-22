@@ -321,41 +321,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  // Future webInstagran() async {
-  //   final Uri urlInstagran =
-  //       Uri(scheme: 'https', host: 'www.instagram.com', path: 'julyannelopes');
-
-  //   if (!await launchUrl(
-  //     urlInstagran,
-  //     mode: LaunchMode.externalApplication,
-  //   )) {
-  //     throw 'Could not launch $urlInstagran';
-  //   }
-  // }
-
-  // Future webWhats() async {
-  //   final Uri urlWhats =
-  //       Uri(scheme: 'https', host: 'wa.me', path: '5541997491470');
-
-  //   if (!await launchUrl(
-  //     urlWhats,
-  //     mode: LaunchMode.externalApplication,
-  //   )) {
-  //     throw 'Could not launch $urlWhats';
-  //   }
-  // }
-
-  // Future webTelegran() async {
-  //   final Uri urlTelegran =
-  //       Uri(scheme: 'https', host: 't.me', path: 'LK4tsedzU9tkNWRh');
-  //   if (!await launchUrl(
-  //     urlTelegran,
-  //     mode: LaunchMode.externalApplication,
-  //   )) {
-  //     throw 'Could not launch $urlTelegran';
-  //   }
-  // }
-
   Future _admin() {
     var senha;
     return showDialog(
@@ -387,23 +352,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         );
-        // return AlertDialog(
-        //   title: const Text('Admin'),
-        //   content: const Text('Você é o admin'),
-        //   actions: [
-        //     TextButton(
-        //       child: const Text('OK'),
-        //       onPressed: () {
-        //         setState(
-        //           () {
-        //             _isAdmin = true;
-        //           },
-        //         );
-        //         Navigator.of(context).pop();
-        //       },
-        //     ),
-        //   ],
-        // );
       },
     );
   }

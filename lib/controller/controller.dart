@@ -18,11 +18,6 @@ class Controller {
     final Uri urlWhats =
         Uri.http('wa.me', '5541997491470', {'text': link} ?? null);
 
-    // final Uri urlWhats = Uri(
-    //   scheme: 'https',
-    //   host: 'wa.me',
-    //   path: link ?? '5541997491470',
-    // );
     if (!await launchUrl(
       urlWhats,
       mode: LaunchMode.externalApplication,
