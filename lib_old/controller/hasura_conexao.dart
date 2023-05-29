@@ -38,29 +38,19 @@ class HasuraConexao {
     String documentMutation = """
       mutation MyMutation {
         insert_oleos(objects: {
-          nome: "$nome", 
-          nomeCientifico: "$nomeCientifico", 
-          preco: "$preco", 
-          tamanho: 12, 
-          image: "$image", 
-          comoUsar: "$comoUsar", 
-          beneficioPrimario: "$beneficioPrimario", 
-          descricao: "$descricao", 
-        }) {
-    affected_rows
-    returning {
-      nome
-      nomeCientifico
-      preco
-      tamanho
-      image
-      comoUsar
-      beneficioPrimario
-      descricao
-    }
-  }
-}
-        """;
+          nome: "$nome",
+          nomeCientifico: "$nomeCientifico",
+          preco: "$preco",
+          tamanho: "$tamanho",
+          image: "$image",
+          comoUsar: "$comoUsar",
+          beneficioPrimario: "$beneficioPrimario",
+          descricao: "$descricao"
+          }) {
+          affected_rows
+        }
+      }
+    """;
 
     try {
       await connect.mutation(documentMutation);

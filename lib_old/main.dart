@@ -82,70 +82,58 @@ class _MyHomePageState extends State<MyHomePage> {
         child: FutureBuilder<PostModel?>(
           future: _hasuraConexao.getAllOleos(),
           builder: (context, snapshot) {
-            if (snapshot.connectionState != ConnectionState.done) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            if (snapshot.data == null || snapshot.data!.data!.oleos!.isEmpty) {
-              const Center(
-                child: Text("Nenhum produto encontrado!"),
-              );
+            if (!snapshot.hasData) {
+              return const Center(child: CircularProgressIndicator());
             }
             log(snapshot.data.toString());
-
             return ListView.builder(
-              itemCount: snapshot.data?.data?.oleos?.length ?? 0,
+              itemCount: snapshot.data!.data!.oleos!.length,
               itemBuilder: (context, i) {
                 var post = snapshot.data!.data!.oleos!.elementAt(i);
-                int totalOleos = snapshot.data?.data?.oleos?.length ?? 0;
-                return totalOleos == 0
-                    ? Container()
-                    : WidgetOleos(
-                        image: '${post.image}',
-                        nome: post.nome!,
-                        nomeCientifico: post.nomeCientifico!,
-                        preco: post.preco!,
-                        tamanho: '${post.tamanho} ml',
-                        comoUsar: post.comoUsar!,
-                        beneficioPrimario: post.beneficioPrimario!,
-                        descricao: post.descricao!,
-                        isAdmin: _isAdmin,
-                        // EDITAR OLEOS
-                        onEdit: () async {
-                          await Navigator.pushNamed(
-                            context,
-                            "/post_page",
-                            arguments: post,
-                          );
-                          setState(() {});
-                        },
-                        // DELETAR OLEOS
-                        onDelete: () async {
-                          var isDelete = await showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: const Text("Deletar"),
-                              content: const Text("Deseja deletar o Oleo?"),
-                              actions: [
-                                TextButton(
-                                  child: const Text("Não"),
-                                  onPressed: () =>
-                                      Navigator.pop(context, false),
-                                ),
-                                TextButton(
-                                  child: const Text("Sim"),
-                                  onPressed: () => Navigator.pop(context, true),
-                                ),
-                              ],
-                            ),
-                          );
-                          if (isDelete != null && isDelete) {
-                            await _hasuraConexao.deleteOleos(post.id!);
-                            setState(() {});
-                          }
-                        },
-                      );
+                return WidgetOleos(
+                  image: '${post.image}',
+                  nome: post.nome!,
+                  nomeCientifico: post.nomeCientifico!,
+                  preco: post.preco!,
+                  tamanho: '${post.tamanho} ml',
+                  comoUsar: post.comoUsar!,
+                  beneficioPrimario: post.beneficioPrimario!,
+                  descricao: post.descricao!,
+                  isAdmin: _isAdmin,
+                  // EDITAR OLEOS
+                  onEdit: () async {
+                    await Navigator.pushNamed(
+                      context,
+                      "/post_page",
+                      arguments: post,
+                    );
+                    setState(() {});
+                  },
+                  // DELETAR OLEOS
+                  onDelete: () async {
+                    var isDelete = await showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: const Text("Deletar"),
+                        content: const Text("Deseja deletar o Oleo?"),
+                        actions: [
+                          TextButton(
+                            child: const Text("Não"),
+                            onPressed: () => Navigator.pop(context, false),
+                          ),
+                          TextButton(
+                            child: const Text("Sim"),
+                            onPressed: () => Navigator.pop(context, true),
+                          ),
+                        ],
+                      ),
+                    );
+                    if (isDelete != null && isDelete) {
+                      await _hasuraConexao.deleteOleos(post.id!);
+                      setState(() {});
+                    }
+                  },
+                );
               },
             );
           },
@@ -334,7 +322,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future _admin() {
-    String? senha;
+    var senha;
     return showDialog(
       context: context,
       builder: (context) {

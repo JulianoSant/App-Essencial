@@ -109,9 +109,9 @@ class _PostPageState extends State<PostPage> {
                               descricao.text,
                             );
                           }
-                          // if (isSend) {
-                          Navigator.pop(context, isSend);
-                          // }
+                          if (isSend) {
+                            Navigator.pop(context, isSend);
+                          }
                         },
                   icon: const Icon(
                     Icons.send,
